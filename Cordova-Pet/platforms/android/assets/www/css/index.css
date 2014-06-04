@@ -113,3 +113,14 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+
+
+#center-img{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#centrar-text{
+    text-align:center;
+}
