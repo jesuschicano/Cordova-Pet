@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <title>Juego</title>
+
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile.js"></script>
+    </head>
+    <body>
+        <!-- GRID -->
+        <div class="ui-grid-b">
+            <div class="ui-block-a">
+                <div class="botonAccion bComer" id="comerB"></div>
+            </div>
+            <div class="ui-block-b">
+                <span id="nombrePet"></span>
+            </div>
+            <div class="ui-block-c">
+                <div class="botonAccion bJugar" id="jugarB"></div>
+            </div>
+        </div>
+        <div class="ui-grid-b">
+            <div class="ui-block-a">
+                <img src="img/hospital-cross.png" id="cross">
+            </div>
+            <div class="ui-block-b">
+                <div class="health-bar">
+                    <div class="health-bar health-bar-quantity"></div>
+                </div>
+            </div>
+            <div class="ui-block-c">
+                <div id="life">100%</div>
+            </div>
+        </div>
+        <div class="ui-grid-b">
+            <div class="ui-block-a">
+                <img src="img/white.png">
+            </div>
+            <div class="ui-block-b" id="contieneImagen">
+                <img src="img/cordova_pet_stable.png" id="queco">
+            </div>
+            <div class="ui-block-c">
+                <img id="caca1" src="img/white.png">
+            </div>
+        </div>
+        <div class="ui-grid-b">
+            <div class="ui-block-a">
+                <div class="botonAccion bLavar" id="lavarB"></div>
+            </div>
+            <div class="ui-block-b">
+                <div id="barraInfo">
+                    <img class="icons-info" src="img/gluttony.png"><span id="infoHambre" class="InfoGF">0</span>
+                    <img class="icons-info" src="img/funny.png"><span id="infoDiver" class="InfoGF">10</span>
+                </div>
+            </div>
+            <div class="ui-block-c">
+                <div class="botonAccion bDormir" id="dormirB"></div>
+            </div>
+        </div>
+        <!-- /GRID -->
+
+        <script type="text/javascript" src="js/mascota.js"></script>
+        <script type="text/javascript" src="js/ingame.js"></script>  
+    </body>
+</html>
