@@ -48,15 +48,45 @@ var Mascota = function(nombre,salud,hambre,diversion,sucio,caca,ncaca,muerto){
 
 	this.jugar = function(){
 		document.addEventListener("deviceready",onDeviceReady, false);
+		var watchID = null;
+		var x, y, z;
 
+		// APIs cargadas
+		//
 		function onDeviceReady(){
 			//mostrar un mensaje de confirmacion
 			navigator.notification.confirm('Cuando confirmes, sacude tu dispositivo durante unos segundos para jugar con tu mascota.', empiezaShack, "Jugar", ["Ok", "Salir"]);
 		}
 
+		// Aumenta suciedad y lanza los sensores
+		//
 		function empiezaShack(buttonIndex){
-			if(buttonIndex == 1)
-				alert(buttonIndex);//this.sucio++;
+			if(buttonIndex == 1){
+				var options = { frequency: 500 };
+				watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+			}	
 		}
-	}
+
+		// onSuccess: Captura la aceleracion actual
+        //
+        function onSuccess(acceleration) {
+        	if( (acceleration.x >= 2 && acceleration.x <= 8) || (acceleration.y >= 2 && acceleration.y <= 8) || (acceleration.z >= 2 && acceleration.z <= 8)){
+        		navigator.accelerometer.clearWatch(watchID);
+                //watchID = null;
+                //aumento de suciedad
+				if(this.sucio < 5){this.sucio++;}
+				//aumenta la diversion
+				if(this.diversion < 10){this.diversion = 10;}
+				//aumento de salud
+				if(this.salud <= 90){this.salud+=10;}
+				else{this.salud+=5;}
+        	}
+        }
+
+        // onError: Al fallar el captor
+        //
+        function onError() {
+            alert("ERROR!");
+        }
+	}// /this.jugar
 }

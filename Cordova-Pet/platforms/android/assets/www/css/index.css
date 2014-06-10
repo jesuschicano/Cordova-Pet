@@ -130,20 +130,36 @@ body {
     bottom: 7px;
 }
 /*********************************/
-@media screen and (max-width: 970px) and (min-width: 750px) {
-    #queco{
-        width: 50%;
-        height: 25%;
-        margin: 0 auto;
-        display: block;
+@media screen and (max-width: 970px) and (min-width: 750px) {/*tablet*/
+    #contieneImagen{
+        height: 200px;
     }
-    #barraInfo{
-        margin-top: 0px;
+    #queco{
+        width: 170px;
+        height: 150px;
+        margin: 0 auto;
+        position: relative;
+        display: block;
+        animation:leviosa 4s infinite;
+        -webkit-animation: leviosa 4s infinite;
     }
 }
-@media screen and (max-width: 750px){
+@media screen and (max-width: 750px){/*movil*/
+    #contieneImagen{
+        height: 150px;
+    }
     #queco{
-        width: 100%;
+        width: 150px;
+        height: 130px;
+        margin: 0 auto;
+        position: relative;
         display: block;
+        animation:leviosa 4s infinite;
+        -webkit-animation: leviosa 4s infinite;
+    }
+    #caca1{
+        display: block;
+        width: 50%;
+        margin: 30px auto;
     }
 }
