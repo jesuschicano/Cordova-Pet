@@ -29,6 +29,8 @@
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile.css">
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.mobile.js"></script>
     </head>
@@ -53,9 +55,24 @@
         </div>
         <div data-role="collapsible" data-theme="a" data-content-theme="a">
             <h4>Documentación Apache Cordova</h4>
-            <p>URL: <a href="http://apachecordova.esy.es/">Apache Cordova</a></p>
+            <button id="show">Documentación</button>
         </div>
 
         <a id="backImg" class="ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" href="index.html"></a>
+        <script type="text/javascript">
+            document.addEventListener("deviceready", onDeviceReady, false);
+            function onDeviceReady(){
+                var button = document.getElementById("show");  
+                button.addEventListener(
+                    "click",
+                    function(){
+                        /* abrir un nuevo enlace en la ventana InAppBrowser */
+                        var ref = window.open('http://apachecordova.esy.es', '_system', 'location=no');
+                        ref.show();
+                    },
+                    false
+                );              
+            }
+        </script>
     </body>
 </html>
