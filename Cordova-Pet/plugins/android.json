@@ -23,6 +23,10 @@
                         {
                             "xml": "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Accelerometer\"><param name=\"android-package\" value=\"org.apache.cordova.devicemotion.AccelListener\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -50,6 +54,9 @@
             "PACKAGE_NAME": "org.apache.cordova.cordova_pet"
         },
         "org.apache.cordova.vibration": {
+            "PACKAGE_NAME": "org.apache.cordova.cordova_pet"
+        },
+        "org.apache.cordova.device-motion": {
             "PACKAGE_NAME": "org.apache.cordova.cordova_pet"
         }
     },

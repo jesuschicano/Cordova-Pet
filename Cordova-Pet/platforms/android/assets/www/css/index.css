@@ -129,6 +129,26 @@ body {
     position: relative;
     bottom: 7px;
 }
+
+.tutpho{
+    display: block;
+    text-align: center;
+    margin: 10px;
+}
+.tutpho2{
+    width: 30%;
+    display: block;
+    text-align: left;
+    margin: 10px;
+}
+
+.total{
+    width:100%;
+}
+
+
+
+
 /*********************************/
 @media screen and (max-width: 970px) and (min-width: 750px) {/*tablet*/
     #contieneImagen{

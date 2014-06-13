@@ -20,6 +20,7 @@
 package org.apache.cordova.cordova_pet;
 
 import android.os.Bundle;
+
 import org.apache.cordova.*;
 
 public class CordovaPet extends CordovaActivity 
@@ -30,8 +31,10 @@ public class CordovaPet extends CordovaActivity
         super.onCreate(savedInstanceState);
         super.init();
         // Set by <content src="index.html" /> in config.xml
-        super.loadUrl(Config.getStartUrl());
+        //super.loadUrl(Config.getStartUrl());
         //super.loadUrl("file:///android_asset/www/index.html");
+        super.setIntegerProperty("splashscreen", R.drawable.screen);
+        super.loadUrl("file:///android_asset/www/index.html", 3000);
     }
 }
 

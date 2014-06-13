@@ -90,11 +90,30 @@
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.mobile.js"></script>
         <script type="text/javascript">
-        
+        document.addEventListener("deviceready",onDevice, false);
+
+            function onDevice(){
+                options = {frequency: 500};
+                navigator.accelerometer.watchAcceleration(accelOk, accelError, options);
+            }
+
+            function accelOk(acceleration){
+                $("#accelerometer").html(
+                    "x: " + Math.round(acceleration.x * 100)/100 + "<br/>" +
+                    "y: " + Math.round(acceleration.y * 100)/100 + "<br/>" +
+                    "z: " + Math.round(acceleration.z * 100)/100
+                    );
+            }
+
+            function accelError(error){
+                alert("Error:"+error.code);
+            }
+
             // Objeto Mascota
             //
-            var Mascota = function(nombre,salud,hambre,diversion,sucio,caca,ncaca,muerto){
+            var Mascota = function(id,nombre,salud,hambre,diversion,sucio,caca,ncaca,muerto){
                 //variables de mascota
+                this.id = id;
                 this.nombre = nombre;
                 this.salud = salud;//0-100
                 this.hambre = hambre;//0-10
@@ -161,16 +180,97 @@
             }// end objeto mascota
 
             function inGame(mas){
+
+            document.addEventListener("backbutton", onBackKeyDown, false);
+
                 $("#nombrePet").html(mas.nombre);
                 $("#infoHambre").html(mas.hambre);
                 $("#infoDiver").html(mas.diversion);
                 $("#comerB").click(function(){mas.comer();});
                 $("#jugarB").click(function(){mas.jugar();});
                 $("#lavarB").click(function(){mas.limpiar();});
+                $("#dormirB").click(function(){
+                    navigator.notification.alert("Tu mascota se va a dormir", function(){}, "Zzz...");
+                    guardar();
+                });
 
-                var nSubeHambreId = window.setInterval(subeHambre, 10000);//10s
-                var nBajaDiverId = window.setInterval(bajaDiver, 15000);//15s
+                var nSubeHambreId = window.setInterval(subeHambre, 7000);//7s
+                var nBajaDiverId = window.setInterval(bajaDiver, 10000);//10s
                 var nRecargaId = window.setInterval(recarga, 100);
+
+                function onBackKeyDown() {
+                    navigator.notification.alert("Tu mascota se va a dormir", function(){}, "Zzz...");
+                    guardar();
+                }
+
+                function guardar(){
+
+                    var miMas = mas;
+
+                    function modificar(tx) {
+                         tx.executeSql('UPDATE PETS SET SALUD = '+miMas.salud+', HAMBRE = '+miMas.hambre+', DIVERSION = '+miMas.diversion+', SUCIO = '+miMas.sucio+', CACA = '+miMas.caca+', NCACA = '+miMas.ncaca+', MUERTO = '+miMas.muerto+' WHERE ID = '+miMas.id);
+                    }
+
+                    function consulta(tx) {
+                        tx.executeSql('SELECT * FROM PETS', [], exito,fallo);
+                    }
+
+                    function exito(tx, results) {
+                        //
+                    }
+
+                    function fallo(err) {
+                        alert("Error processing SQL: "+err.message);
+                    }
+
+                    function successCB3() {
+                        var db = window.openDatabase("Pets", "1.0", "Cordova Pet", 200000);
+                        db.transaction(consulta, fallo);
+                    }
+
+                    var db = window.openDatabase("Pets", "1.0", "Cordova Pet", 200000);
+                    db.transaction(modificar, errorCB, successCB3);
+                    window.location.href = 'index.html';
+                }
+
+                function guardarM(){
+
+                    var miMas = mas;
+
+                    var idr = Math.floor((Math.random() * 9999));
+                    var idr2 = Math.floor((Math.random() * 9999));
+                    var idr3 = Math.floor((Math.random() * 9999));
+
+                    function modificar(tx) {
+                         tx.executeSql('UPDATE PETS SET SALUD = '+miMas.salud+', HAMBRE = '+miMas.hambre+', DIVERSION = '+miMas.diversion+', SUCIO = '+miMas.sucio+', CACA = '+miMas.caca+', NCACA = '+miMas.ncaca+', MUERTO = '+miMas.muerto+', ID = '+idr+idr2+idr3+'  WHERE ID = '+miMas.id);
+                    }
+
+                    function consulta(tx) {
+                        tx.executeSql('SELECT * FROM PETS', [], exito, fallo);
+                    }
+
+                    function exito(tx, results) {
+                        //
+                    }
+
+                    function fallo(err) {
+                        alert("Error processing SQL: "+err.message);
+                    }
+
+                    function successCB3() {
+                        var db = window.openDatabase("Pets", "1.0", "Cordova Pet", 200000);
+                        db.transaction(consulta, fallo);
+                    }
+
+                    var db = window.openDatabase("Pets", "1.0", "Cordova Pet", 200000);
+                    db.transaction(modificar, errorCB, successCB3);
+                    window.location.href = 'index.html';
+                }
+
+                function morir(){
+                    mas.muerto = 1;
+                    guardarM();
+                }
 
                 // funcion que va reseteando los valores por pantalla cada 100 milisegundos
                 //
@@ -188,6 +288,8 @@
                         $("#infoHambre").html(mas.hambre);
                         //recargamos html
                         $("#infoDiver").html(mas.diversion);
+                        $("div.health-bar-quantity").width($("div.health-bar").width()/100*mas.salud);
+                        $("#life").html(mas.salud + "%");
 
                         //1º limpio
                         //
@@ -257,16 +359,15 @@
                             $("#queco").attr("src",'img/cordova_pet_dead.png');//esta muerto se cambia
                         else
                             $("#queco").attr("src",'img/cordova_pet_dead_d.png');
-                        navigator.notification.alert("Ha muerto", function(){
-                            //
-                        }, "GAME OVER");
-                        
-                        window.location.href = 'index.html';
+
+                        morir();
+                        navigator.notification.alert("Tu mascota ha muerto", function(){}, "GAME OVER");
                     }//end if muerto
                 }//end funcion recarga
 
                 // Funcion que sube el hambre y disminuye la salud al llegar al limite
                 //
+
                 function subeHambre(){
                     //estado de barra
                     var barra = $("div.health-bar").width();
@@ -300,15 +401,6 @@
                 }// /bajaDiver
             }
 
-            //+++++CONTROLADORES DEL JUEGO+++++++++++
-                //generador de nombres aleatorios
-                //var nombres = new Array("AIKO","ANEKO","AYAME","CHIKA","CHIKO","CHO","DAI","ERIKO","GIN","HARUKO","HOSHI","HOSHIKO","KAEDE","KAMEKO","KAMI");
-                //var select = Math.floor(Math.random()*14);
-
-                //var mas = new Mascota(nombres[select],100,0,10,0,0,0,0);//nueva mascota
-
-                // mostrar los datos
-                //
                 
 
         </script>

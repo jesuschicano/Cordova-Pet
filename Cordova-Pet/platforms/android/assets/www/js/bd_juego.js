@@ -43,7 +43,7 @@ var nombres = new Array("AIKO","ANEKO","AYAME","CHIKA","CHIKO","CHO","DAI","ERIK
             for (var i=0; i<n; i++){
                 //navigator.notification.alert(results.rows.item(i).id+" | "+results.rows.item(i).nombre+" | "+results.rows.item(i).salud+" | "+results.rows.item(i).hambre+" | "+results.rows.item(i).diversion+" | "+results.rows.item(i).sucio+" | "+results.rows.item(i).caca+" | "+results.rows.item(i).muerto);
                 //mas = new Mascota(results.rows.item(i).nombre,results.rows.item(i).salud,results.rows.item(i).hambre,results.rows.item(i).diversion,results.rows.item(i).sucio,results.rows.item(i).caca,results.rows.item(i).ncaca,results.rows.item(i).muerto);
-                mas = new Mascota(results.rows.item(i).nombre,results.rows.item(i).salud,results.rows.item(i).hambre,results.rows.item(i).diversion,results.rows.item(i).sucio,results.rows.item(i).caca,results.rows.item(i).ncaca,results.rows.item(i).muerto);
+                mas = new Mascota(results.rows.item(i).id,results.rows.item(i).nombre,results.rows.item(i).salud,results.rows.item(i).hambre,results.rows.item(i).diversion,results.rows.item(i).sucio,results.rows.item(i).caca,results.rows.item(i).ncaca,results.rows.item(i).muerto);
                 //navigator.notification.alert(mas.nombre);
                 inGame(mas);
             }
@@ -56,7 +56,7 @@ var nombres = new Array("AIKO","ANEKO","AYAME","CHIKA","CHIKO","CHO","DAI","ERIK
         for (var i=0; i<len; i++){
             //navigator.notification.alert(results.rows.item(i).id+" | "+results.rows.item(i).nombre+" | "+results.rows.item(i).salud+" | "+results.rows.item(i).hambre+" | "+results.rows.item(i).diversion+" | "+results.rows.item(i).sucio+" | "+results.rows.item(i).caca+" | "+results.rows.item(i).muerto);
             //mas = new Mascota(results.rows.item(i).nombre,results.rows.item(i).salud,results.rows.item(i).hambre,results.rows.item(i).diversion,results.rows.item(i).sucio,results.rows.item(i).caca,results.rows.item(i).ncaca,results.rows.item(i).muerto);
-            mas = new Mascota(results.rows.item(i).nombre,100,0,10,0,0,0,0);
+            mas = new Mascota(results.rows.item(i).id,results.rows.item(i).nombre,100,0,10,0,0,0,0);
             //navigator.notification.alert(mas.nombre);
             inGame(mas);
         }

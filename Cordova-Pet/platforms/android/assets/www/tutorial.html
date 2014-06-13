@@ -45,9 +45,32 @@
             <p>Bienvenido a Cordova Pet. Un juego desarrollado con ayuda de Apache Cordova con el que podrás crear tus propias mascotas, cuidarlas y tener un listado de tus mascotas ya perecidas. A continuación te explicamos el manejo de la aplicación.</p>
         </div>
 
-        <h3 id="tutorialBox" class="ui-bar ui-bar-a">Interfaz</h3>
+        <h3 id="tutorialBox" class="ui-bar ui-bar-a">Inicio</h3>
         <div class="ui-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil, illo, autem, est, maxime asperiores provident rerum nobis corporis minima nam quia consequuntur officiis molestiae fuga reprehenderit aut maiores delectus molestias.</p>
+            En la pantalla de inicio se puede entrar en:
+            <ul>
+                <li><b>jugar</b> para comenzar el juego</li>
+                <li><b>cementerio</b> para ver las mascotas muertas</li>
+                <li><b>tutorial</b> para aprender a jugar</li>
+                <li><b>Créditos</b> para ver los desarrolladores del juego</li>
+            </ul>
+        </div>
+
+         <h3 id="tutorialBox" class="ui-bar ui-bar-a">Jugar</h3>
+        <div class="ui-body">
+           El juego consiste en mantener a nuestra mascota viva y contenta, para ello hay que lograr que la salud no llegue a cero.
+           <span class="tutpho"><img src="img/01.png"/></span>
+           Para ello debemos de utilizar los botones de los que disponemos para evitar que nuestra mascota, se ensucie, se haga caca, observando las llamadas de atención que nos hace nuestra mascota y los marcadores de necesidad:
+           <span class="tutpho"><img src="img/02.png" class="total"/></span>
+           La salud comienza a bajar cuando el indicador de hambre llega a 10 o cuando el de diversion llega a 0. Para evitar esto hay que utilizar los siguientes botones:
+            <span class="tutpho"><img src="img/03.png"/></span>
+            El botón dar de comer, reduce en uno el hambre de nuestra mascota y al pulsar sobre él nuestro dispositivo vibrara brevemente (siempre que tenga el dispositivo de vibración)
+            <span class="tutpho"><img src="img/04.png"/></span>
+            El botón de jugar accede al beep, sonando similar a los wassap (si tu dispositivo lo contempla), y sube automáticamente la diversión a 10.
+            <span class="tutpho"><img src="img/05.png"/></span>
+            Cuando nuestra mascota juega 5 veces se ensucia, y si come 5 veces se hace caca, con el botón de limpiar hacemos que nuestra mascota se quede limpia de nuevo.
+            <span class="tutpho"><img src="img/06.png"/></span>
+            Con el botón de dormir se guarda la mascota y el programa se va al menú donde podemos salir del programa. De este modo al entrar de nuevo a la aplicación seguiremos jugando con la misma mascota.
         </div>
         <!-- /CONTENT -->
 
@@ -56,5 +79,6 @@
             <a id="backImg" class="ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" href="index.html"></a>
         </footer>
         <!-- /FOOTER -->
+        <script type="text/javascript" src="cordova.js"></script>
     </body>
 </html>

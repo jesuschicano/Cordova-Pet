@@ -45,7 +45,13 @@
             <li><a href="cementerio.html">Cementerio</a></li>
             <li><a href="tutorial.html">Tutorial</a></li>
             <li><a href="creditos.html">Créditos</a></li>
+            <li><a href="" id="salirB">Salir</a></li>
         </ul>
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript">
+            $("#salirB").click(function(){
+                navigator.app.exitApp();
+            });
+        </script>
     </body>
 </html>
